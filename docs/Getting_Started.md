@@ -25,7 +25,7 @@
 
 8. By default when a user registers, he is assigned a coordinator position, using the admin panel set the required users profile position as instructor and add him/her in instructor group along with the required permissions.
 
-9. Under *settings.py* file see to it that all required variables are set then you're good to go!
+9. Under *local_settings.py* file see to it that all required variables are set then you're good to go!
 
 ### Instructor specific steps
 

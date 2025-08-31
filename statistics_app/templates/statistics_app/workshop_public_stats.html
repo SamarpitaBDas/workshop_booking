@@ -2,11 +2,433 @@
 
 {% block title %} Statistics {% endblock %}
 
+{% block extra-custom-scripts %}
+<style>
+    /* Root Variables - Consistent with workshop page */
+    :root {
+        --primary-color: #04a9cf;
+        --primary-dark: #0891b2;
+        --primary-light: #67e8f9;
+        --success-color: #10b981;
+        --warning-color: #f59e0b;
+        --info-color: #3b82f6;
+        --text-primary: #0f172a;
+        --text-secondary: #64748b;
+        --text-muted: #94a3b8;
+        --bg-primary: #ffffff;
+        --bg-secondary: #f8fafc;
+        --bg-tertiary: #f1f5f9;
+        --border-color: #e2e8f0;
+        --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+        --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        --radius-sm: 6px;
+        --radius-md: 8px;
+        --radius-lg: 12px;
+        --radius-xl: 16px;
+    }
+
+    body {
+        background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        line-height: 1.6;
+    }
+
+    /* Enhanced Cards */
+    .card {
+        border: none;
+        border-radius: var(--radius-xl);
+        box-shadow: var(--shadow-lg);
+        overflow: hidden;
+        transition: all 0.3s ease;
+        background: var(--bg-primary);
+    }
+
+    .card:hover {
+        box-shadow: var(--shadow-xl);
+        transform: translateY(-2px);
+    }
+
+    .card-header {
+        background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+        color: white;
+        border: none;
+        padding: 1.5rem;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .card-header::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+        animation: shimmer 3s ease-in-out infinite;
+    }
+
+    @keyframes shimmer {
+        0%, 100% { left: -100%; }
+        50% { left: 100%; }
+    }
+
+    .card-header h3 {
+        margin: 0;
+        font-weight: 700;
+        position: relative;
+        z-index: 2;
+    }
+
+    .card-body {
+        padding: 2rem;
+    }
+
+    /* Enhanced Form Elements */
+    .card-body > div {
+        margin-bottom: 1.5rem;
+        font-weight: 600;
+        color: var(--text-secondary);
+        font-size: 0.875rem;
+    }
+
+    .card-body input,
+    .card-body select {
+        width: 100%;
+        padding: 0.75rem;
+        border: 2px solid var(--border-color);
+        border-radius: var(--radius-md);
+        background: var(--bg-secondary);
+        color: var(--text-primary);
+        transition: all 0.2s ease;
+        font-size: 0.95rem;
+        margin-top: 0.5rem;
+    }
+
+    .card-body input:focus,
+    .card-body select:focus {
+        outline: none;
+        border-color: var(--primary-color);
+        background: var(--bg-primary);
+        box-shadow: 0 0 0 3px rgba(4, 169, 207, 0.1);
+    }
+
+    /* Modern Buttons */
+    .btn {
+        border-radius: var(--radius-md);
+        font-weight: 600;
+        font-size: 0.875rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        padding: 0.75rem 1.5rem;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+        border: none;
+    }
+
+    .btn::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+        transition: left 0.5s ease;
+    }
+
+    .btn:hover::before {
+        left: 100%;
+    }
+
+    .btn-success {
+        background: linear-gradient(135deg, var(--success-color) 0%, #059669 100%);
+        color: white;
+        box-shadow: 0 4px 8px rgba(16, 185, 129, 0.3);
+    }
+
+    .btn-success:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 16px rgba(16, 185, 129, 0.4);
+        color: white;
+    }
+
+    .btn-info {
+        background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+        color: white;
+        box-shadow: 0 4px 8px rgba(4, 169, 207, 0.3);
+    }
+
+    .btn-info:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 16px rgba(4, 169, 207, 0.4);
+        color: white;
+    }
+
+    .btn-outline-info {
+        background: transparent;
+        color: var(--primary-color);
+        border: 2px solid var(--primary-color);
+    }
+
+    .btn-outline-info:hover {
+        background: var(--primary-color);
+        color: white;
+        transform: translateY(-2px);
+    }
+
+    /* Enhanced Table */
+    .table {
+        background: var(--bg-primary);
+        border-radius: var(--radius-xl);
+        overflow: hidden;
+        box-shadow: var(--shadow-lg);
+        border: none;
+        margin-top: 2rem;
+    }
+
+    .table thead {
+        background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+    }
+
+    .table thead th {
+        color: white;
+        font-weight: 600;
+        padding: 1.25rem 1rem;
+        border: none;
+        font-size: 0.875rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .table tbody tr {
+        transition: all 0.2s ease;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .table tbody tr:hover {
+        background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+        transform: translateX(4px);
+    }
+
+    .table tbody td {
+        padding: 1rem;
+        vertical-align: middle;
+        border: none;
+        font-size: 0.95rem;
+    }
+
+    /* Mobile Filter Button */
+    .mobile-filter-toggle {
+        display: none !important;
+        position: fixed;
+        bottom: 2rem;
+        right: 2rem;
+        z-index: 100;
+        background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        box-shadow: 0 8px 16px rgba(4, 169, 207, 0.4);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        cursor: pointer;
+    }
+
+    .mobile-filter-toggle:hover {
+        transform: scale(1.1);
+        box-shadow: 0 12px 24px rgba(4, 169, 207, 0.5);
+    }
+
+    .mobile-filter-toggle i {
+        font-size: 1.5rem;
+    }
+
+    /* Mobile Filter Overlay */
+    .mobile-filter-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(5px);
+        z-index: 1000;
+        animation: fadeIn 0.3s ease;
+    }
+
+    .mobile-filter-overlay.show {
+        display: block !important;
+    }
+
+    /* Mobile Filter Popup */
+    .mobile-filter-popup {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: var(--bg-primary);
+        border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+        box-shadow: 0 -10px 25px rgba(0, 0, 0, 0.2);
+        max-height: 85vh;
+        overflow: hidden;
+        animation: slideUp 0.3s ease;
+        z-index: 1001;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .mobile-filter-header {
+        background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+        color: white;
+        padding: 1.5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-shrink: 0;
+    }
+
+    .mobile-filter-header h3 {
+        margin: 0;
+        font-size: 1.25rem;
+        font-weight: 700;
+    }
+
+    .mobile-filter-close {
+        background: none;
+        border: none;
+        color: white;
+        font-size: 1.5rem;
+        cursor: pointer;
+        padding: 0.5rem;
+        border-radius: var(--radius-sm);
+        transition: background 0.2s ease;
+    }
+
+    .mobile-filter-close:hover {
+        background: rgba(255, 255, 255, 0.1);
+    }
+
+    .mobile-filter-body {
+        padding: 2rem;
+        overflow-y: auto;
+        flex: 1;
+    }
+
+    .mobile-filter-body > div {
+        margin-bottom: 1.5rem;
+        font-weight: 600;
+        color: var(--text-secondary);
+        font-size: 0.875rem;
+    }
+
+    .mobile-filter-body input,
+    .mobile-filter-body select {
+        width: 100%;
+        padding: 0.75rem;
+        border: 2px solid var(--border-color);
+        border-radius: var(--radius-md);
+        background: var(--bg-secondary);
+        color: var(--text-primary);
+        transition: all 0.2s ease;
+        font-size: 0.95rem;
+        margin-top: 0.5rem;
+    }
+
+    .mobile-filter-body input:focus,
+    .mobile-filter-body select:focus {
+        outline: none;
+        border-color: var(--primary-color);
+        background: var(--bg-primary);
+        box-shadow: 0 0 0 3px rgba(4, 169, 207, 0.1);
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    @keyframes slideUp {
+        from { transform: translateY(100%); }
+        to { transform: translateY(0); }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .desktop-filters {
+            display: none !important;
+        }
+
+        .mobile-filter-toggle {
+            display: flex !important;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container-fluid {
+            padding: 0.5rem;
+        }
+
+        .table {
+            font-size: 0.875rem;
+        }
+
+        .btn {
+            font-size: 0.75rem;
+            padding: 0.5rem 1rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .mobile-filter-toggle {
+            bottom: 1.5rem;
+            right: 1.5rem;
+            width: 55px;
+            height: 55px;
+        }
+
+        .mobile-filter-toggle i {
+            font-size: 1.25rem;
+        }
+
+        .mobile-filter-body {
+            padding: 1.5rem;
+        }
+    }
+
+    /* Modal Improvements */
+    #dialog {
+        border-radius: var(--radius-xl) !important;
+        overflow: hidden !important;
+        box-shadow: var(--shadow-xl) !important;
+    }
+
+    .ui-dialog-titlebar {
+        background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%) !important;
+        color: white !important;
+        border: none !important;
+        padding: 1rem 1.5rem !important;
+        font-weight: 600 !important;
+    }
+
+    .ui-dialog-content {
+        padding: 2rem !important;
+        background: var(--bg-primary) !important;
+    }
+</style>
+{% endblock %}
+
 {% block content %}
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-3">
-            <form method="GET">
+        <div class="col-md-3 desktop-filters">
+            <form method="GET" id="filterForm">
                 <div class="card">
                     <div class="card-header">
                         <div class="row">
@@ -92,6 +514,54 @@
     </div>
 </div>
 
+<!-- Mobile Filter Button -->
+<button class="mobile-filter-toggle" id="mobileFilterToggle">
+    <i class="fa fa-filter"></i>
+</button>
+
+<!-- Mobile Filter Popup -->
+<div class="mobile-filter-overlay" id="mobileFilterOverlay">
+    <div class="mobile-filter-popup">
+        <div class="mobile-filter-header">
+            <h3><u>Filters</u></h3>
+            <button type="button" class="mobile-filter-close" id="mobileFilterClose">
+                <i class="fa fa-times"></i>
+            </button>
+        </div>
+        <div class="mobile-filter-body">
+            <form method="GET" id="mobileFilterForm">
+                <div>From date: {{form.from_date}}</div>
+                <div>To date: {{form.to_date}}</div>
+                <div>Workshop: {{form.workshop_type}}</div>
+                <div>State: {{form.state}}</div>
+                <div>{{form.sort.help_text}}: {{form.sort}}</div>
+                {% if request.user.is_authenticated %}
+                <div>{{form.show_workshops.help_text}}: {{form.show_workshops}}</div>
+                {% endif %}
+                <br>
+                <div class="row justify-content-center">
+                    <div class="col-6">
+                        <button type="submit" class="btn btn-success">
+                            <i class="fa fa-eye"></i>&nbsp;View
+                        </button>
+                    </div>
+                    <div class="col-6">
+                        <button type="submit" class="btn btn-info" name="download" value="download">
+                            <i class="fa fa-download"></i>&nbsp;Download
+                        </button>
+                    </div>
+                </div>
+                <br>
+                <div class="text-center">
+                    <a href="{% url 'statistics_app:public' %}" class="btn btn-outline-info">
+                        <i class="fa fa-times"></i>&nbsp;Clear All
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <!-- The Modal -->
 <div id="dialog" title="Workshops Statistics">
     <canvas id="myChart"></canvas>
@@ -103,6 +573,7 @@
     var type_labels = {{ws_type|safe}};
     var type_data = {{ws_type_count|safe}};
     var chart;
+    
     $("#state_graph").on("click", function() {
         show_graph(state_labels, state_data, "State wise workshops");
     });
@@ -135,6 +606,56 @@
             height: 500
         });
     }
+
+    // Mobile filter functionality
+    document.addEventListener('DOMContentLoaded', function() {
+        const mobileToggle = document.getElementById('mobileFilterToggle');
+        const mobileOverlay = document.getElementById('mobileFilterOverlay');
+        const mobileClose = document.getElementById('mobileFilterClose');
+
+        // Show mobile filter popup
+        if (mobileToggle) {
+            mobileToggle.addEventListener('click', function(e) {
+                e.preventDefault();
+                mobileOverlay.classList.add('show');
+                document.body.style.overflow = 'hidden';
+            });
+        }
+
+        // Hide mobile filter popup
+        function closeMobileFilter() {
+            mobileOverlay.classList.remove('show');
+            document.body.style.overflow = 'auto';
+        }
+
+        if (mobileClose) {
+            mobileClose.addEventListener('click', closeMobileFilter);
+        }
+        
+        // Close on overlay click
+        if (mobileOverlay) {
+            mobileOverlay.addEventListener('click', function(e) {
+                if (e.target === mobileOverlay) {
+                    closeMobileFilter();
+                }
+            });
+        }
+
+        // Prevent popup from closing when clicking inside
+        const mobilePopup = document.querySelector('.mobile-filter-popup');
+        if (mobilePopup) {
+            mobilePopup.addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
+        }
+
+        // Close with escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && mobileOverlay && mobileOverlay.classList.contains('show')) {
+                closeMobileFilter();
+            }
+        });
+    });
 </script>
 
 {% endblock %}

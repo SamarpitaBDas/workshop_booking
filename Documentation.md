@@ -36,3 +36,13 @@ issues faced in the previous version:
 **Mobile View:**
 ![alt text](https://i.postimg.cc/MKPqcSN2/Screenshot-2025-08-30-221525.png)
 
+## Workshop statistics page
+- added a filter button for the mobile layout 
+- switched the table layout with cards because tables were overflowing in mobile version 
+
+### previous version
+
+
+### current version 
+![alt text](https://i.postimg.cc/Y0M2jLKt/Screenshot-2025-08-31-150939.png)
+![alt text](https://i.postimg.cc/6qcWZ6tn/Screenshot-2025-08-31-150947.png)

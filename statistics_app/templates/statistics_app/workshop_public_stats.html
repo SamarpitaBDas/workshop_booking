@@ -29,9 +29,31 @@
         --radius-xl: 16px;
     }
 
+    /* Dark theme variables */
+
     body {
         font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         line-height: 1.6;
+        background-color: var(--bg-secondary);
+        color: var(--text-primary);
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    /* System theme detection */
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --text-muted: #94a3b8;
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-tertiary: #334155;
+            --border-color: #475569;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.6);
+        }
     }
 
     /* Enhanced Cards */
@@ -120,9 +142,14 @@
 
 
     .btn-outline-info {
-        background: white;
+        background: var(--bg-primary);
         color: var(--primary-color);
         border: 2px solid var(--primary-color);
+    }
+
+    .btn-outline-info:hover {
+        background: var(--primary-color);
+        color: white;
     }
 
     /* Enhanced Table */
@@ -152,10 +179,11 @@
     .table tbody tr {
         transition: all 0.2s ease;
         border-bottom: 1px solid var(--border-color);
+        background: var(--bg-primary);
     }
 
     .table tbody tr:hover {
-        background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+        background: var(--bg-secondary);
         transform: translateX(4px);
     }
 
@@ -164,6 +192,7 @@
         vertical-align: middle;
         border: none;
         font-size: 0.95rem;
+        color: var(--text-primary);
     }
 
     /* Mobile Filter Button */
@@ -383,6 +412,26 @@
         box-shadow: 0 0 0 3px rgba(4, 169, 207, 0.1);
     }
 
+    /* Dark theme overlay adjustments */
+    @media (prefers-color-scheme: dark) {
+        .mobile-filter-overlay {
+            background: rgba(0, 0, 0, 0.7);
+        }
+
+        .mobile-filter-popup {
+            box-shadow: 0 -10px 25px rgba(0, 0, 0, 0.6);
+        }
+
+        .ui-widget-overlay {
+            background: rgba(0, 0, 0, 0.7) !important;
+        }
+
+        .ui-dialog {
+            border: 2px solid var(--border-color) !important;
+            box-shadow: var(--shadow-xl) !important;
+        }
+    }
+
     /* Animations */
     @keyframes fadeIn {
         from { opacity: 0; }
@@ -421,8 +470,48 @@
 
         .btn {
             font-size: 0.75rem;
-            padding: 0.5rem 1rem;
+            padding: 0.5rem 0.5rem;
         }
+
+        /* Mobile chart buttons layout */
+        .col-md-3 {
+            margin-bottom: 0.5rem;
+        }
+        
+        .row .col-md-3:nth-child(2),
+        .row .col-md-3:nth-child(3) {
+            flex: 0 0 50%;
+            max-width: 50%;
+            padding: 0 0.25rem;
+        }
+        
+        .row .col-md-3:nth-child(2) {
+            padding-left: 0;
+        }
+        
+        .row .col-md-3:nth-child(3) {
+            padding-right: 0;
+        }
+        
+        #state_graph,
+        #type_graph {
+            width: 100%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .theme-toggle {
+            top: 1rem;
+            right: 1rem;
+            width: 45px;
+            height: 45px;
+        }
+
+        .theme-toggle i {
+            font-size: 1.1rem;
+        }
+
     }   
     @media (max-width: 480px) {
         .mobile-filter-toggle {
@@ -439,11 +528,6 @@
         .mobile-filter-body {
             padding: 1.5rem;
         }
-        .workshop-card-header {
-            flex-direction: column;
-            gap: 0.5rem;
-            text-align: center;
-        }
 
         .workshop-card-body {
             padding: 1.25rem;
@@ -452,9 +536,21 @@
         .workshop-detail {
             margin-bottom: 0.875rem;
         }
+
+        .theme-toggle {
+            top: 0.75rem;
+            right: 0.75rem;
+            width: 40px;
+            height: 40px;
+        }
+
+        .theme-toggle i {
+            font-size: 1rem;
+        }
+
     }
 
-    /* Modal Improvements */
+    /* Dialog dark theme styles */
     #dialog {
         border-radius: var(--radius-xl) !important;
         overflow: hidden !important;
@@ -472,6 +568,65 @@
     .ui-dialog-content {
         padding: 2rem !important;
         background: var(--bg-primary) !important;
+    }
+
+    /*TODO: fix chart positions
+
+    @media (max-width: 768px) {
+        .ui-dialog {
+            width: 95% !important;
+            max-width: 95% !important;
+            left: 2.5% !important;
+            top: 5% !important;
+            height: auto !important;
+            max-height: 90vh !important;
+            margin: 0 !important;
+        }
+        
+        .ui-dialog-content {    
+            padding: 1rem !important;
+            overflow: auto !important;
+            height: auto !important;
+            max-height: calc(90vh - 60px) !important;
+        }
+        
+        .ui-dialog-titlebar {
+            padding: 0.75rem 1rem !important;
+            font-size: 1rem !important;
+        }
+        
+        #myChart {
+            max-width: 100% !important;
+            height: auto !important;
+            min-height: 250px !important;
+            {% comment %} position: center !important; {% endcomment %}
+        }
+        .chartjs-render-monitor {
+            animation: none !important;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .ui-dialog {
+            width: 98% !important;
+            left: 1% !important;
+            top: 2% !important;
+            max-height: 95vh !important;
+        }
+        
+        .ui-dialog-content {
+            padding: 0.75rem !important;
+            max-height: calc(95vh - 50px) !important;
+        }
+        
+        .ui-dialog-titlebar {
+            padding: 0.5rem 0.75rem !important;
+            font-size: 0.9rem !important;
+        }
+        
+        #myChart {
+            min-height: 200px !important;
+        }
     }
 </style>
 {% endblock %}
@@ -525,7 +680,6 @@
                 <div class="col-md-6">
                     {% include "statistics_app/paginator.html" %}
                 </div>
-                <!-- TODO: Fix the way these buttons appear in the mobile version  -->
                 <div class="col-md-3">
                     <button class="btn btn-info" id="state_graph">
                         <i class="fa fa-bar-chart"></i>&nbsp;State chart
@@ -568,10 +722,16 @@
                 {% for workshop in objects %}
                 <div class="workshop-card">
                     <div class="workshop-card-header">
-                        <div class="workshop-number">{{ forloop.counter0|add:objects.start_index}}</div>
                         <div class="workshop-date">{{ workshop.date | date}}</div>
                     </div>
                     <div class="workshop-card-body">
+                        <div class="workshop-detail">
+                            <i class="fas fa-hashtag detail-icon"></i>
+                            <div class="detail-content">
+                                <div class="detail-label">Sr No.</div>
+                                <div class="detail-value">{{ forloop.counter0|add:objects.start_index}}</div>
+                            </div>
+                        </div>
                         <div class="workshop-detail">
                             <i class="fas fa-user detail-icon"></i>
                             <div class="detail-content">
@@ -677,14 +837,17 @@
         show_graph(type_labels, type_data, "Type wise workshops");
     });
 
-    function show_graph(labels, data, graph_name, chart_name) {
+    function show_graph(labels, data, graph_name) {
         var ctx = document.getElementById('myChart').getContext('2d');
         if(chart) chart.destroy();
+        
+        // Get system theme preference for chart colors
+        const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const textColor = isDark ? '#f8fafc' : '#0f172a';
+        const gridColor = isDark ? '#475569' : '#e2e8f0';
+        
         chart = new Chart(ctx, {
-            // The type of chart we want to create
             type: 'bar',
-
-            // The data for our dataset
             data: {
                 labels: labels,
                 datasets: [{
@@ -694,13 +857,79 @@
                     borderColor: 'rgb(255, 99, 132)',
                 }]
             },
-            // Configuration options go here
-            options: {}
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                scales: {
+                    x: {
+                        ticks: {
+                            color: textColor
+                        },
+                        grid: {
+                            color: gridColor
+                        }
+                    },
+                    y: {
+                        ticks: {
+                            color: textColor
+                        },
+                        grid: {
+                            color: gridColor
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: textColor
+                        }
+                    }
+                }
+            }
         });
+        
+        // Calculate appropriate dimensions based on screen size
+        var isMobile = window.innerWidth <= 768;
+        var dialogWidth = isMobile ? '95%' : 900;
+        var dialogHeight = isMobile ? 'auto' : 500;
+        
         $("#dialog").dialog({
-            width: 900,
-            height: 500
+            width: dialogWidth,
+            height: dialogHeight,
+            modal: true,
+            resizable: false,
+            position: {
+                my: "center",
+                at: "center",
+                of: window
+            },
+            open: function() {
+                // Force chart to resize for mobile
+                if (isMobile) {
+                    setTimeout(function() {
+                        chart.resize();
+                    }, 100);
+                }
+            }
         });
+        
+        // Additional mobile-specific adjustments
+        if (isMobile) {
+            // Center the dialog in the viewport
+            $('.ui-dialog').css({
+                'top': '50%',
+                'left': '50%',
+                'transform': 'translate(-50%, -50%)',
+                'position': 'fixed',
+                'max-height': '80vh'
+            });
+            
+            // Ensure content area is scrollable if needed
+            $('.ui-dialog-content').css({
+                'max-height': 'calc(80vh - 60px)',
+                'overflow': 'auto'
+            });
+        }
     }
 
     // Mobile filter functionality
@@ -749,6 +978,22 @@
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape' && mobileOverlay && mobileOverlay.classList.contains('show')) {
                 closeMobileFilter();
+            }
+        });
+        
+        $(window).resize(function() {
+            if ($("#dialog").dialog("isOpen")) {
+                $("#dialog").dialog("option", "position", {
+                    my: "center",
+                    at: "center",
+                    of: window
+                });
+                
+                if (chart) {
+                    setTimeout(function() {
+                        chart.resize();
+                    }, 100);
+                }
             }
         });
     });

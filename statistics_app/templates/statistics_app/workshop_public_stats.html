@@ -4,7 +4,6 @@
 
 {% block extra-custom-scripts %}
 <style>
-    /* root vars */
     :root {
         --primary-color: #04a9cf;
         --primary-dark: #0891b2;
@@ -29,17 +28,14 @@
         --radius-xl: 16px;
     }
 
-    /* Dark theme variables */
-
     body {
         font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         line-height: 1.6;
         background-color: var(--bg-secondary);
         color: var(--text-primary);
-        transition: background-color 0.3s ease, color 0.3s ease;
     }
 
-    /* System theme detection */
+    /* dark theme */
     @media (prefers-color-scheme: dark) {
         :root {
             --text-primary: #f8fafc;
@@ -56,19 +52,16 @@
         }
     }
 
-    /* Enhanced Cards */
     .card {
         border: none;
         border-radius: var(--radius-xl);
         box-shadow: var(--shadow-lg);
         overflow: hidden;
-        transition: all 0.3s ease;
         background: var(--bg-primary);
     }
 
     .card:hover {
         box-shadow: var(--shadow-xl);
-        transform: translateY(-2px);
     }
 
     .card-header {
@@ -91,7 +84,6 @@
         padding: 2rem;
     }
 
-    /* Enhanced Form Elements */
     .card-body > div {
         margin-bottom: 1.5rem;
         font-weight: 600;
@@ -107,7 +99,6 @@
         border-radius: var(--radius-md);
         background: var(--bg-secondary);
         color: var(--text-primary);
-        transition: all 0.2s ease;
         font-size: 0.95rem;
         margin-top: 0.5rem;
     }
@@ -127,19 +118,16 @@
         text-transform: uppercase;
         letter-spacing: 0.5px;
         padding: 0.75rem 1.5rem;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         position: relative;
         overflow: hidden;
         border: 2px;
     }
-
 
     .btn-info {
         background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
         color: white;
         box-shadow: 0 4px 8px rgba(4, 169, 207, 0.3);
     }
-
 
     .btn-outline-info {
         background: var(--bg-primary);
@@ -152,7 +140,6 @@
         color: white;
     }
 
-    /* Enhanced Table */
     .table {
         background: var(--bg-primary);
         border-radius: var(--radius-xl);
@@ -177,14 +164,12 @@
     }
 
     .table tbody tr {
-        transition: all 0.2s ease;
         border-bottom: 1px solid var(--border-color);
         background: var(--bg-primary);
     }
 
     .table tbody tr:hover {
         background: var(--bg-secondary);
-        transform: translateX(4px);
     }
 
     .table tbody td {
@@ -195,7 +180,7 @@
         color: var(--text-primary);
     }
 
-    /* Mobile Filter Button */
+    /* mobile floating filter button */
     .mobile-filter-toggle {
         display: none !important;
         position: fixed;
@@ -209,20 +194,13 @@
         width: 60px;
         height: 60px;
         box-shadow: 0 8px 16px rgba(4, 169, 207, 0.4);
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         cursor: pointer;
-    }
-
-    .mobile-filter-toggle:hover {
-        transform: scale(1.1);
-        box-shadow: 0 12px 24px rgba(4, 169, 207, 0.5);
     }
 
     .mobile-filter-toggle i {
         font-size: 1.5rem;
     }
 
-    /* Mobile Cards Layout */
     .mobile-cards {
         display: none;
     }
@@ -233,12 +211,6 @@
         box-shadow: var(--shadow-md);
         margin-bottom: 1rem;
         overflow: hidden;
-        transition: all 0.3s ease;
-    }
-
-    .workshop-card:hover {
-        box-shadow: var(--shadow-lg);
-        transform: translateY(-1px);
     }
 
     .workshop-card-header {
@@ -312,7 +284,7 @@
         line-height: 1.4;
     }
 
-    /* Mobile Filter Overlay */
+    /* mobile filter overlay */
     .mobile-filter-overlay {
         display: none;
         position: fixed;
@@ -323,14 +295,12 @@
         background: rgba(0, 0, 0, 0.5);
         backdrop-filter: blur(5px);
         z-index: 1000;
-        animation: fadeIn 0.3s ease;
     }
 
     .mobile-filter-overlay.show {
         display: block !important;
     }
 
-    /* Mobile Filter Popup */
     .mobile-filter-popup {
         position: fixed;
         bottom: 0;
@@ -341,7 +311,6 @@
         box-shadow: 0 -10px 25px rgba(0, 0, 0, 0.2);
         max-height: 85vh;
         overflow: hidden;
-        animation: slideUp 0.3s ease;
         z-index: 1001;
         display: flex;
         flex-direction: column;
@@ -371,7 +340,6 @@
         cursor: pointer;
         padding: 0.5rem;
         border-radius: var(--radius-sm);
-        transition: background 0.2s ease;
     }
 
     .mobile-filter-close:hover {
@@ -399,7 +367,6 @@
         border-radius: var(--radius-md);
         background: var(--bg-secondary);
         color: var(--text-primary);
-        transition: all 0.2s ease;
         font-size: 0.95rem;
         margin-top: 0.5rem;
     }
@@ -412,7 +379,7 @@
         box-shadow: 0 0 0 3px rgba(4, 169, 207, 0.1);
     }
 
-    /* Dark theme overlay adjustments */
+    /* dark theme adjustments */
     @media (prefers-color-scheme: dark) {
         .mobile-filter-overlay {
             background: rgba(0, 0, 0, 0.7);
@@ -432,18 +399,7 @@
         }
     }
 
-    /* Animations */
-    @keyframes fadeIn {
-        from { opacity: 0; }
-        to { opacity: 1; }
-    }
-
-    @keyframes slideUp {
-        from { transform: translateY(100%); }
-        to { transform: translateY(0); }
-    }
-
-    /* Responsive Design */
+    /* responsive breakpoints */
     @media (max-width: 768px) {
         .desktop-filters {
             display: none !important;
@@ -459,7 +415,6 @@
             padding: 0.5rem;
         }
 
-        /* Hide desktop table, show mobile cards */
         .table {
             display: none !important;
         }
@@ -473,7 +428,6 @@
             padding: 0.5rem 0.5rem;
         }
 
-        /* Mobile chart buttons layout */
         .col-md-3 {
             margin-bottom: 0.5rem;
         }
@@ -511,8 +465,8 @@
         .theme-toggle i {
             font-size: 1.1rem;
         }
-
     }   
+
     @media (max-width: 480px) {
         .mobile-filter-toggle {
             bottom: 1.5rem;
@@ -547,10 +501,9 @@
         .theme-toggle i {
             font-size: 1rem;
         }
-
     }
 
-    /* Dialog dark theme styles */
+    /* dialog styling */
     #dialog {
         border-radius: var(--radius-xl) !important;
         overflow: hidden !important;
@@ -569,8 +522,6 @@
         padding: 2rem !important;
         background: var(--bg-primary) !important;
     }
-
-    /*TODO: fix chart positions
 
     @media (max-width: 768px) {
         .ui-dialog {
@@ -599,10 +550,6 @@
             max-width: 100% !important;
             height: auto !important;
             min-height: 250px !important;
-            {% comment %} position: center !important; {% endcomment %}
-        }
-        .chartjs-render-monitor {
-            animation: none !important;
         }
     }
 
@@ -717,7 +664,7 @@
                 {% endfor %}
             </table>
             
-            <!-- Mobile Cards View -->
+            <!-- mobile cards view -->
             <div class="mobile-cards">
                 {% for workshop in objects %}
                 <div class="workshop-card">
@@ -770,12 +717,12 @@
     </div>
 </div>
 
-<!-- Mobile Filter Button -->
+<!-- mobile filter button -->
 <button class="mobile-filter-toggle" id="mobileFilterToggle">
     <i class="fa fa-filter"></i>
 </button>
 
-<!-- Mobile Filter Popup -->
+<!-- mobile filter popup -->
 <div class="mobile-filter-overlay" id="mobileFilterOverlay">
     <div class="mobile-filter-popup">
         <div class="mobile-filter-header">
@@ -818,7 +765,7 @@
     </div>
 </div>
 
-<!-- The Modal -->
+<!-- chart modal -->
 <div id="dialog" title="Workshops Statistics">
     <canvas id="myChart"></canvas>
 </div>
@@ -841,7 +788,7 @@
         var ctx = document.getElementById('myChart').getContext('2d');
         if(chart) chart.destroy();
         
-        // Get system theme preference for chart colors
+        // system theme for chart colors
         const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
         const textColor = isDark ? '#f8fafc' : '#0f172a';
         const gridColor = isDark ? '#475569' : '#e2e8f0';
@@ -888,7 +835,7 @@
             }
         });
         
-        // Calculate appropriate dimensions based on screen size
+        // responsive dialog sizing
         var isMobile = window.innerWidth <= 768;
         var dialogWidth = isMobile ? '95%' : 900;
         var dialogHeight = isMobile ? 'auto' : 500;
@@ -904,7 +851,6 @@
                 of: window
             },
             open: function() {
-                // Force chart to resize for mobile
                 if (isMobile) {
                     setTimeout(function() {
                         chart.resize();
@@ -913,9 +859,8 @@
             }
         });
         
-        // Additional mobile-specific adjustments
+        // mobile dialog positioning
         if (isMobile) {
-            // Center the dialog in the viewport
             $('.ui-dialog').css({
                 'top': '50%',
                 'left': '50%',
@@ -924,7 +869,6 @@
                 'max-height': '80vh'
             });
             
-            // Ensure content area is scrollable if needed
             $('.ui-dialog-content').css({
                 'max-height': 'calc(80vh - 60px)',
                 'overflow': 'auto'
@@ -932,13 +876,12 @@
         }
     }
 
-    // Mobile filter functionality
+    // mobile filter controls
     document.addEventListener('DOMContentLoaded', function() {
         const mobileToggle = document.getElementById('mobileFilterToggle');
         const mobileOverlay = document.getElementById('mobileFilterOverlay');
         const mobileClose = document.getElementById('mobileFilterClose');
 
-        // Show mobile filter popup
         if (mobileToggle) {
             mobileToggle.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -947,7 +890,6 @@
             });
         }
 
-        // Hide mobile filter popup
         function closeMobileFilter() {
             mobileOverlay.classList.remove('show');
             document.body.style.overflow = 'auto';
@@ -957,7 +899,6 @@
             mobileClose.addEventListener('click', closeMobileFilter);
         }
         
-        // Close on overlay click
         if (mobileOverlay) {
             mobileOverlay.addEventListener('click', function(e) {
                 if (e.target === mobileOverlay) {
@@ -966,7 +907,6 @@
             });
         }
 
-        // Prevent popup from closing when clicking inside
         const mobilePopup = document.querySelector('.mobile-filter-popup');
         if (mobilePopup) {
             mobilePopup.addEventListener('click', function(e) {
@@ -974,7 +914,6 @@
             });
         }
 
-        // Close with escape key
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape' && mobileOverlay && mobileOverlay.classList.contains('show')) {
                 closeMobileFilter();

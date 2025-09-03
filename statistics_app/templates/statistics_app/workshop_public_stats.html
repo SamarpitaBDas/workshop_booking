@@ -42,16 +42,14 @@
         <div class="col">
             <div class="row chart-buttons">
                 <div class="col-6">
-                    {% comment %} didn't understand the need to add it once above the div and once below the div {% endcomment %}
-                    {% comment %} {% include "statistics_app/paginator.html" %} {% endcomment %}
+                    <!-- left side kept empty / paginator etc. -->
                 </div>
-                <div class="col-3">
+                <div class="col-6 d-flex justify-content-end align-items-center gap-2">
                     <button class="btn btn-info btn-sm" id="state_graph">State Chart</button>
-                </div>
-                <div class="col-md-3">
-                    <button class="btn btn-info" id="type_graph">Workshops chart                    </button>
+                    <button class="btn btn-info btn-sm" id="type_graph">Workshops Chart</button>
                 </div>
             </div>
+
             
             <table class="table">
                 <thead>

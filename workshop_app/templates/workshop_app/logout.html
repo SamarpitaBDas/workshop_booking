@@ -1,18 +1,72 @@
 {% extends 'workshop_app/base.html' %}
 
-	{% block title %}
-		Logged out
-	{% endblock %}
+{% block title %}
+    Logged out
+{% endblock %}
+
+{% block extra-custom-scripts %}
+<style>
+    .logout-container {
+        max-width: 500px;
+        margin: 60px auto;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .logout-card h3 {
+        color: #1f2937;
+        font-weight: 600;
+        font-size: 24px;
+        margin-bottom: 12px;
+    }
+
+    .logout-card h4 {
+        color: #6b7280;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 1.5;
+        margin-bottom: 0;
+    }
+
+    .logout-card h4 a {
+        color: #04a9cf;
+        text-decoration: none;
+        font-weight: 500;
+        padding: 8px 16px;
+        border-radius: 6px;
+        transition: background-color 0.2s;
+    }
+
+    .logout-card h4 a:hover {
+        background-color: #f0f9ff;
+        text-decoration: none;
+    }
+
+    @media (max-width: 640px) {
+        .logout-container {
+            margin: 40px auto;
+            padding: 16px;
+        }
 
 
-	{% block content %}
-		<div class="container" align="center">
-			<br>
-			<h3>You have logged out successfully.</h3>
-			<h4>If you want to login again please
-				<a href="/">click here</a>
-			</h4>
-			<br>
-		</div>
+        .logout-card h3 {
+            font-size: 22px;
+        }
 
-	{% endblock %}
+        .logout-card h4 {
+            font-size: 15px;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="logout-container">
+    <div class="logout-card">
+        <h3>You have logged out successfully.</h3>
+        <h4>If you want to login again please 
+            <a href="/">click here</a>
+        </h4>
+    </div>
+</div>
+{% endblock %}

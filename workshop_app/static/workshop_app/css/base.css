@@ -17,3 +17,20 @@
     padding-top: 5em;
     padding-bottom: 5em;
 }
+:root {
+    --blue: #04a9cf;
+    --blue-dark: #0891b2;
+    --green: #10b981;
+    --orange: #f59e0b;
+    --text-dark: #1f2937;
+    --text-gray: #6b7280;
+    --text-light: #9ca3af;
+    --bg-white: #ffffff;
+    --bg-light: #f9fafb;
+    --border: #e5e7eb;
+}
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+}

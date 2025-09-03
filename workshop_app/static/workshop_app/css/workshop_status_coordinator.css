@@ -1,0 +1,234 @@
+.workshop-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.welcome-hero {
+    background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+    border-radius: 12px;
+    padding: 50px 30px;
+    margin: 30px 0;
+    color: white;
+}
+
+.welcome-hero h1 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.welcome-hero p {
+    font-size: 1.1rem;
+    color: #d1d5db;
+    margin: 0;
+}
+
+.page-header {
+    text-align: center;
+    margin: 40px 0;
+}
+
+.page-header h3 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--blue);
+    margin: 0;
+}
+.section-title {
+    color: var(--text-dark);
+    font-weight: 600;
+    font-size: 1.4rem;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.table-container {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    background: var(--bg-white);
+}
+
+.modern-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.modern-table thead {
+    background: var(--blue);
+}
+
+.modern-table thead th {
+    color: white;
+    font-weight: 600;
+    padding: 15px 12px;
+    text-align: left;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.modern-table tbody tr {
+    border-bottom: 1px solid var(--border);
+}
+
+.modern-table tbody tr:hover {
+    background: #f8fafc;
+}
+
+.modern-table tbody td {
+    padding: 15px 12px;
+    font-size: 15px;
+}
+
+.modern-table tbody td a {
+    color: var(--blue);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.modern-table tbody td a:hover {
+    text-decoration: underline;
+}
+
+/* Badges */
+.modern-badge {
+    display: inline-block;
+    padding: 6px 12px;
+    font-size: 12px;
+    font-weight: 600;
+    border-radius: 15px;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+.badge-success {
+    background: var(--green);
+    color: white;
+}
+
+.badge-warning {
+    background: var(--orange);
+    color: white;
+}
+
+/* Empty states */
+.empty-state {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--text-light);
+    background: var(--bg-light);
+    border-radius: 8px;
+    border: 2px dashed var(--border);
+    margin: 20px 0;
+}
+
+.empty-state-icon {
+    font-size: 32px;
+    margin-bottom: 15px;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+    .workshop-container {
+        padding: 15px;
+    }
+
+    .welcome-hero {
+        padding: 35px 20px;
+        margin: 20px 0;
+    }
+
+    .welcome-hero h1 {
+        font-size: 1.8rem;
+    }
+
+    .welcome-hero p {
+        font-size: 1rem;
+    }
+
+    .page-header h3 {
+        font-size: 1.6rem;
+    }
+
+    .workshop-card {
+        padding: 20px;
+        margin: 20px 0;
+    }
+
+    .section-title {
+        font-size: 1.2rem;
+        margin-bottom: 20px;
+    }
+
+    /* Mobile table layout */
+    .modern-table thead {
+        display: none;
+    }
+
+    .modern-table tbody tr {
+        display: block;
+        background: var(--bg-white);
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        margin-bottom: 15px;
+        padding: 15px;
+    }
+
+    .modern-table tbody td {
+        display: block;
+        padding: 8px 0;
+        position: relative;
+        padding-left: 35%;
+    }
+
+    .modern-table tbody td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 0;
+        width: 30%;
+        font-weight: 600;
+        color: var(--text-gray);
+        font-size: 13px;
+        text-transform: uppercase;
+    }
+
+    .modern-table tbody tr td:nth-child(1)::before { content: "Workshop"; }
+    .modern-table tbody tr td:nth-child(2)::before { content: "Instructor"; }
+    .modern-table tbody tr td:nth-child(3)::before { content: "Date"; }
+    .modern-table tbody tr td:nth-child(4)::before { content: "Status"; }
+
+    .proposed-table tbody tr td:nth-child(1)::before { content: "Workshop"; }
+    .proposed-table tbody tr td:nth-child(2)::before { content: "Date"; }
+    .proposed-table tbody tr td:nth-child(3)::before { content: "Status"; }
+}
+
+/* Desktop grid */
+@media (min-width: 769px) {
+    .workshop-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+    }
+
+    .workshop-card {
+        margin: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .workshop-card {
+        padding: 15px;
+    }
+
+    .modern-table tbody td {
+        padding-left: 40%;
+        font-size: 14px;
+    }
+
+    .modern-table tbody td::before {
+        width: 35%;
+        font-size: 12px;
+    }
+}

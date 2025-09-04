@@ -93,8 +93,10 @@ The objective was to **improve the look and user experience of the website** whi
 * changed the ui for the cards in order to give it a modern look and make it more readable to the user.
 
 ### Previous Version
-
-*(screenshots not available)*
+**Desktop Version**
+![alt text](https://i.postimg.cc/Wz4CvqNd/Screenshot-2025-09-04-195955.png)
+**Mobile Version**
+![alt text](https://i.postimg.cc/XJ4tsDtc/Screenshot-2025-09-04-200027.png)
 
 ### Current Version
 

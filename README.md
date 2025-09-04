@@ -113,7 +113,9 @@ The objective was to **improve the look and user experience of the website** whi
 
 ### Improvements I Made
 * Optimized spacing and alignment for better visual hierarchy.
-* changed the way the tables and the cards appeared in smaller screens in order to ensure readability.
+* changed the way the tables and the cards appeared in smaller screens in order to ensure readability.I used flexbox layouts instead of fixed tables so they automatically adapt to different screen sizes.
+
+The trade-off here was adding a bit more interaction (the button press) for mobile users, but it made the experience much cleaner overall.
 
 ### Earlier Version
 

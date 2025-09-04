@@ -75,52 +75,22 @@ python manage.py migrate cms
 
 ## 🔹 Task Documentation
 
-The objective was to **improve the look and feel of the website** while maintaining its existing functionality.
+The objective was to **improve the look and user experience of the website** while maintaining its existing functionality.
 
 ### Issues in the previous version
 
-* [ ] Static tables replaced with responsive UI components
-* [ ] Improved UI/UX for mobile devices (responsiveness)
-* [ ] Applied consistent **Bootstrap-based styling**
-* [ ] Fixed inconsistent spacing across elements
-* [ ] Added a **dark theme** for better readability
+* [X] Static tables replaced with responsive UI components
+* [X] Improved UI/UX for mobile devices (responsiveness)
+
+## major Changes that were made and their screenshots
 
 ---
 
-## 🔹 Homepage ( `/workshop/status` )
-
-### Improvements I Made
-
-* Removed static tables → replaced them with **cards** for a cleaner layout.
-* Added a **dark theme** for a modern look and reduced eye strain.
-* Optimized spacing and alignment for better visual hierarchy.
-* Ensured responsiveness → smooth experience across desktop and mobile.
-
-### Earlier Version
-
-* Minimal design with plain static tables.
-* Not optimized for mobile screens.
-
-**Screenshots (Before):**
-![alt text](https://i.postimg.cc/PfMtjZMq/Screenshot-2025-08-29-220922.png)
-![alt text](https://i.postimg.cc/FsshsRPV/Screenshot-2025-08-30-192726.png)
-
----
-
-### Current Version
-
-**Desktop View:**
-![alt text](https://i.postimg.cc/SxH4rGmg/Screenshot-2025-08-30-221515.png)
-
-**Mobile View:**
-![alt text](https://i.postimg.cc/MKPqcSN2/Screenshot-2025-08-30-221525.png)
-
----
 
 ## 🔹 Workshop Statistics Page
 
-* Added a filter button for the mobile layout.
-* Switched the table layout with **cards** (because tables were overflowing on mobile).
+* in the mobile version of the statistics page i noticed that the **filter selection** table doesn't look right also it made the entire page messy so i added an additional **button** which when pressed can be used to apply the filters
+* changed the ui for the cards in order to give it a modern look and make it more readable to the user.
 
 ### Previous Version
 
@@ -128,8 +98,48 @@ The objective was to **improve the look and feel of the website** while maintain
 
 ### Current Version
 
-![alt text](https://i.postimg.cc/Y0M2jLKt/Screenshot-2025-08-31-150939.png)
-![alt text](https://i.postimg.cc/6qcWZ6tn/Screenshot-2025-08-31-150947.png)
+**Desktop View**
+![!\[alt text\](https://i.postimg.cc/Y0M2jLKt/Screenshot-2025-08-31-150939.png)](https://i.postimg.cc/52m0PDRn/Screenshot-2025-09-04-194154.png)
+
+**Mobile View**
+![alt text](https://i.postimg.cc/k5X5Lfr9/Screenshot-2025-09-04-194148.png)
+![alt text](https://i.postimg.cc/FFfY9WYH/Screenshot-2025-09-04-194307.png)
+
+---
+
+## 🔹 Homepage ( `/workshop/status` )
+
+### Improvements I Made
+* Optimized spacing and alignment for better visual hierarchy.
+* changed the way the tables and the cards appeared in smaller screens in order to ensure readability.
+
+### Earlier Version
+
+**Screenshots (Before):**
+![alt text](https://i.postimg.cc/PfMtjZMq/Screenshot-2025-08-29-220922.png)
+![alt text](https://i.postimg.cc/FsshsRPV/Screenshot-2025-08-30-192726.png)
+
+### Current Version
+
+**Desktop View:**
+![!\[alt text\](https://i.postimg.cc/SxH4rGmg/Screenshot-2025-08-30-221515.png)](https://i.postimg.cc/261SSy8K/Screenshot-2025-09-04-193402.png)
+
+**Mobile View:**
+![!\[alt text\](https://i.postimg.cc/MKPqcSN2/Screenshot-2025-08-30-221525.png)](https://i.postimg.cc/YSnS7YkF/Screenshot-2025-09-04-193432.png)
+
+## Login and logout screens
+* there were no major updates in the login and logout screens though their appearances were slightly changed in order to match the other pages
+
+### Current Version
+
+**Desktop View**
+![alt text](https://i.postimg.cc/T3x1JTCK/Screenshot-2025-09-04-194220.png)
+
+**Mobile View**
+![alt text](https://i.postimg.cc/ZKp0NWFk/Screenshot-2025-09-04-194237.png)
+![alt text](https://i.postimg.cc/J79GtNXc/Screenshot-2025-09-04-194248.png)
+
+NOTE: the navbar was changed to match the theme though no significant ui updates were made on it.
 
 ---
 
